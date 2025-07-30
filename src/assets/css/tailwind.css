@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom utilities */
+@layer utilities {
+  .aspect-video {
+    aspect-ratio: 16 / 9;
+  }
+  
+  .grid-pattern {
+    background-image: 
+      linear-gradient(rgba(37, 99, 235, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(37, 99, 235, 0.03) 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+}
+
+/* Component styles */
+@layer components {
+  .hover-lift {
+    @apply transition-all duration-200 ease-in-out;
+  }
+  
+  .hover-lift:hover {
+    @apply transform -translate-y-0.5;
+  }
+  
+  .interactive-card {
+    @apply transition-all duration-300 ease-in-out;
+  }
+  
+  .interactive-card:hover {
+    @apply transform -translate-y-1 shadow-xl;
+    box-shadow: 0 15px 35px rgba(37, 99, 235, 0.1);
+  }
+  
+  .svg-icon {
+    @apply transition-all duration-200 ease-in-out;
+  }
+  
+  .svg-icon:hover {
+    @apply transform scale-105;
+  }
+}
