@@ -27,8 +27,8 @@
     <!-- Why Choose Section -->
     <WhyChooseSection />
     
-    <!-- Stats Counter Section -->
-    <StatsCounterSection />
+    <!-- Blog Section -->
+    <BlogSection />
     
     <!-- Footer Component -->
     <AppFooter />
@@ -56,7 +56,7 @@ import StatsPortfolioSection from './components/StatsPortfolioSection.vue'
 import WorkingProcessSection from './components/WorkingProcessSection.vue'
 import TestimonialsSection from './components/TestimonialsSection.vue'
 import WhyChooseSection from './components/WhyChooseSection.vue'
-import StatsCounterSection from './components/StatsCounterSection.vue'
+import BlogSection from './components/BlogSection.vue'
 import AppFooter from './components/AppFooter.vue'
 import VideoModal from './components/VideoModal.vue'
 import GoToTopButton from './components/GoToTopButton.vue'
@@ -73,7 +73,7 @@ export default {
     WorkingProcessSection,
     TestimonialsSection,
     WhyChooseSection,
-    StatsCounterSection,
+    BlogSection,
     AppFooter,
     VideoModal,
     GoToTopButton
@@ -112,7 +112,7 @@ export default {
       }, observerOptions)
 
       // Observe animation elements
-      const animationElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in')
+      const animationElements = document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right, .scale-in, .slide-in-bottom')
       animationElements.forEach(el => observer.observe(el))
 
       return observer
@@ -217,6 +217,17 @@ body {
 .scale-in.visible {
   opacity: 1;
   transform: scale(1);
+}
+
+.slide-in-bottom {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.slide-in-bottom.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .svg-icon {

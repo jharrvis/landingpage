@@ -32,7 +32,7 @@
         </div>
 
         <!-- Right side - Content -->
-        <div class="space-y-8 slide-in-right">
+        <div class="space-y-8 slide-in-right" id="why-choose-content">
           <div class="space-y-6">
             <div class="flex items-center space-x-3">
               <div class="w-12 h-0.5 bg-gray-400"></div>
@@ -47,7 +47,7 @@
           </div>
 
           <!-- Progress Bars -->
-          <div class="space-y-6">
+          <div class="space-y-6" id="progress-bars-container">
             <ProgressBar
               v-for="skill in skills"
               :key="skill.name"
@@ -100,24 +100,27 @@ export default {
     }
 
     onMounted(() => {
-      // Setup intersection observer to trigger progress bars animation
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              progressVisible.value = true
-              observer.unobserve(entry.target)
-            }
-          })
-        },
-        { threshold: 0.3 }
-      )
+      // Add a small delay to ensure DOM is fully rendered
+      setTimeout(() => {
+        // Setup intersection observer to trigger progress bars animation
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                progressVisible.value = true
+                observer.unobserve(entry.target)
+              }
+            })
+          },
+          { threshold: 0.3 }
+        )
 
-      // Find the section element and observe it
-      const section = document.querySelector('.slide-in-right')
-      if (section) {
-        observer.observe(section)
-      }
+        // Find the progress bars container and observe it
+        const progressContainer = document.getElementById('progress-bars-container')
+        if (progressContainer) {
+          observer.observe(progressContainer)
+        }
+      }, 100)
     })
 
     return {
