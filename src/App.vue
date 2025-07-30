@@ -5,7 +5,10 @@
     
     <!-- Hero Section -->
     <HeroSection />
-    
+
+    <!-- Marquee Section -->
+    <MarqueeSection />
+
     <!-- Services Section -->
     <ServicesSection />
     
@@ -46,6 +49,7 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import AppHeader from './components/AppHeader.vue'
 import HeroSection from './components/HeroSection.vue'
+import MarqueeSection from './components/MarqueeSection.vue'
 import ServicesSection from './components/ServicesSection.vue'
 import AboutSection from './components/AboutSection.vue'
 import StatsPortfolioSection from './components/StatsPortfolioSection.vue'
@@ -62,6 +66,7 @@ export default {
   components: {
     AppHeader,
     HeroSection,
+    MarqueeSection,
     ServicesSection,
     AboutSection,
     StatsPortfolioSection,
