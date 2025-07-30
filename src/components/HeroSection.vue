@@ -15,29 +15,17 @@
               We create brilliant brand identities and digital experiences that help your business thrive in an ever-changing digital landscape.
             </p>
           </div>
-          <div class="flex items-center justify-center space-x-8 fade-in">
+          <div class="flex items-center justify-center fade-in">
             <button 
               @click="handleCTAClick"
               class="bg-blue-600 text-white px-10 py-5 rounded-full hover:bg-blue-700 transition-all duration-300 font-bold text-lg hover-lift"
               :class="{ 'animate-pulse': ctaClicked }"
             >
-              See How It Works
+              View Projects
               <svg class="w-6 h-6 ml-3 inline transition-transform" fill="currentColor" viewBox="0 0 20 20">
                 <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"/>
               </svg>
             </button>
-            <div 
-              @click="playDemo"
-              class="flex items-center space-x-4 cursor-pointer hover-lift"
-              :class="{ 'animate-spin': demoClicked }"
-            >
-              <div class="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center">
-                <svg class="w-6 h-6 text-white ml-1" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z" clip-rule="evenodd"/>
-                </svg>
-              </div>
-              <span class="text-gray-700 font-bold text-lg">Watch Demo</span>
-            </div>
           </div>
         </div>
       </div>
@@ -52,33 +40,19 @@ export default {
   name: 'HeroSection',
   setup() {
     const ctaClicked = ref(false)
-    const demoClicked = ref(false)
 
     const handleCTAClick = () => {
       ctaClicked.value = true
       setTimeout(() => {
         ctaClicked.value = false
       }, 1000)
-    }
-
-    const playDemo = () => {
-      demoClicked.value = true
-      setTimeout(() => {
-        demoClicked.value = false
-      }, 1000)
-      
-      // Emit event to open video modal
-      const event = new CustomEvent('openVideoModal', {
-        detail: { videoId: 'dQw4w9WgXcQ' }
-      })
-      window.dispatchEvent(event)
+      // Handle navigation to projects page here
+      console.log('View Projects clicked')
     }
 
     return {
       ctaClicked,
-      demoClicked,
-      handleCTAClick,
-      playDemo
+      handleCTAClick
     }
   }
 }
