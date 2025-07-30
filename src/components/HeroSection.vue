@@ -7,12 +7,8 @@
             <h1 class="text-7xl lg:text-8xl font-black leading-none">
               <span class="block text-gray-900">Design For</span>
               <span class="block text-gray-900 text-selection-effect">A World That's</span>
-              <span 
-                class="block gradient-text font-extrabold" 
-                :class="{ 'typewriter': showTypewriter }"
-                ref="typewriterText"
-              >
-                {{ typewriterText }}
+              <span class="block gradient-text font-extrabold">
+                Always Evolving
               </span>
             </h1>
             <p class="text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-medium fade-in">
@@ -50,34 +46,13 @@
 </template>
 
 <script>
-import { ref, onMounted, nextTick } from 'vue'
+import { ref } from 'vue'
 
 export default {
   name: 'HeroSection',
   setup() {
-    const typewriterText = ref('')
-    const showTypewriter = ref(false)
     const ctaClicked = ref(false)
     const demoClicked = ref(false)
-    const typewriterTextRef = ref(null)
-
-    const fullText = 'Always Evolving'
-
-    const typeWriter = () => {
-      typewriterText.value = ''
-      showTypewriter.value = true
-      
-      let i = 0
-      const typing = () => {
-        if (i < fullText.length) {
-          typewriterText.value += fullText.charAt(i)
-          i++
-          setTimeout(typing, 100)
-        }
-      }
-      
-      setTimeout(typing, 500)
-    }
 
     const handleCTAClick = () => {
       ctaClicked.value = true
@@ -99,54 +74,13 @@ export default {
       window.dispatchEvent(event)
     }
 
-    onMounted(() => {
-      nextTick(() => {
-        // Start typewriter effect
-        setTimeout(typeWriter, 1000)
-        
-        // Setup scroll observer for typewriter restart
-        const observer = new IntersectionObserver((entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              typeWriter()
-            }
-          })
-        }, { threshold: 0.5 })
-        
-        if (typewriterTextRef.value) {
-          observer.observe(typewriterTextRef.value)
-        }
-      })
-    })
-
     return {
-      typewriterText,
-      showTypewriter,
       ctaClicked,
       demoClicked,
-      typewriterTextRef,
       handleCTAClick,
       playDemo
     }
   }
 }
 </script>
-
-<style scoped>
-.typewriter {
-  overflow: hidden;
-  border-right: 3px solid #2563eb;
-  white-space: nowrap;
-  animation: typing 3s steps(30, end), blink-caret 0.8s step-end infinite;
-}
-
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes blink-caret {
-  from, to { border-color: transparent; }
-  50% { border-color: #2563eb; }
-}
-</style>
+</template>
