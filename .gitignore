@@ -78,3 +78,6 @@ jspm_packages/
 # Vite
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+#CLAUDE
+CLAUDE.md

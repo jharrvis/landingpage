@@ -5,8 +5,8 @@
     
     <!-- Hero Section -->
     <HeroSection />
-
-    <!-- Marquee Section -->
+    
+    <!-- Marquee Section (New) -->
     <MarqueeSection />
 
     <!-- Services Section -->
@@ -49,8 +49,8 @@
 import { ref, onMounted, onUnmounted } from 'vue'
 import AppHeader from './components/AppHeader.vue'
 import HeroSection from './components/HeroSection.vue'
-import MarqueeSection from './components/MarqueeSection.vue'
 import ServicesSection from './components/ServicesSection.vue'
+import MarqueeSection from './components/MarqueeSection.vue'
 import AboutSection from './components/AboutSection.vue'
 import StatsPortfolioSection from './components/StatsPortfolioSection.vue'
 import WorkingProcessSection from './components/WorkingProcessSection.vue'
@@ -66,8 +66,8 @@ export default {
   components: {
     AppHeader,
     HeroSection,
-    MarqueeSection,
     ServicesSection,
+    MarqueeSection,
     AboutSection,
     StatsPortfolioSection,
     WorkingProcessSection,
@@ -234,23 +234,6 @@ body {
 .interactive-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 15px 35px rgba(37, 99, 235, 0.1);
-}
-
-.typewriter {
-  overflow: hidden;
-  border-right: 3px solid #2563eb;
-  white-space: nowrap;
-  animation: typing 3s steps(30, end), blink-caret 0.8s step-end infinite;
-}
-
-@keyframes typing {
-  from { width: 0; }
-  to { width: 100%; }
-}
-
-@keyframes blink-caret {
-  from, to { border-color: transparent; }
-  50% { border-color: #2563eb; }
 }
 
 .text-selection-effect {

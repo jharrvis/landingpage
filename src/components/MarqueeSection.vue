@@ -1,20 +1,21 @@
 <template>
   <section class="relative overflow-hidden">
-    <!-- Image Section with Scroll Effect -->
-    <div class="relative h-[400px] lg:h-[500px] overflow-hidden">
+    <!-- Image Section with Fade In Effect -->
+    <div 
+      ref="imageSection"
+      class="relative h-[500px] lg:h-[600px] overflow-hidden zoom-in-effect opacity-0 transform scale-110 transition-all duration-1000 ease-out"
+    >
       <img 
-        ref="parallaxImage"
-        src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1600&q=80" 
+        src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=1080&q=80" 
         alt="Team collaboration" 
-        class="w-full h-full object-cover transition-transform duration-300 ease-out"
-        :style="{ transform: `translateY(${parallaxOffset}px)` }"
+        class="w-full h-full object-cover"
       >
       <!-- Overlay -->
-      <div class="absolute inset-0 bg-black bg-opacity-20"></div>
+      <div class="absolute inset-0 bg-black bg-opacity-40"></div>
       
-      <!-- Optional content overlay -->
+      <!-- Content overlay -->
       <div class="absolute inset-0 flex items-center justify-center">
-        <div class="text-center text-white">
+        <div class="text-center text-white px-6 max-w-4xl">
           <h2 class="text-4xl lg:text-6xl font-bold mb-4 opacity-90">
             Creating Digital Excellence
           </h2>
@@ -109,20 +110,24 @@ import { ref, onMounted, onUnmounted } from 'vue'
 export default {
   name: 'MarqueeSection',
   setup() {
-    const parallaxImage = ref(null)
-    const parallaxOffset = ref(0)
+    const imageSection = ref(null)
 
     const handleScroll = () => {
-      if (parallaxImage.value) {
-        const rect = parallaxImage.value.getBoundingClientRect()
-        const scrolled = window.pageYOffset
-        const rate = scrolled * -0.5
-        parallaxOffset.value = rate
+      if (imageSection.value) {
+        const rect = imageSection.value.getBoundingClientRect()
+        const windowHeight = window.innerHeight
+        
+        // Trigger animation when element is 20% visible from bottom
+        if (rect.top < windowHeight * 0.8 && rect.bottom > 0) {
+          imageSection.value.classList.add('visible')
+        }
       }
     }
 
     onMounted(() => {
       window.addEventListener('scroll', handleScroll)
+      // Check on mount in case element is already in view
+      handleScroll()
     })
 
     onUnmounted(() => {
@@ -130,8 +135,7 @@ export default {
     })
 
     return {
-      parallaxImage,
-      parallaxOffset
+      imageSection
     }
   }
 }
@@ -150,6 +154,18 @@ export default {
 
 .rotating-star {
   animation: rotate 3s linear infinite;
+}
+
+/* Zoom in effect */
+.zoom-in-effect {
+  opacity: 0;
+  transform: scale(1.1);
+  transition: all 1.2s ease-out;
+}
+
+.zoom-in-effect.visible {
+  opacity: 1;
+  transform: scale(1);
 }
 
 @keyframes marquee {
