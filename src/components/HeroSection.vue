@@ -4,21 +4,21 @@
       <div class="max-w-4xl mx-auto text-center">
         <div class="space-y-8 slide-in-left">
           <div class="space-y-6">
-            <h1 class="text-7xl lg:text-8xl font-black leading-none">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black leading-none">
               <span class="block text-gray-900">Design For</span>
               <span class="block text-gray-900 text-selection-effect">A World That's</span>
               <span class="block gradient-text font-extrabold">
                 Always Evolving
               </span>
             </h1>
-            <p class="text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-medium fade-in">
+            <p class="text-lg sm:text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-medium fade-in">
               We create brilliant brand identities and digital experiences that help your business thrive in an ever-changing digital landscape.
             </p>
           </div>
           <div class="flex items-center justify-center fade-in">
             <button 
               @click="handleCTAClick"
-              class="bg-blue-600 text-white px-10 py-5 rounded-full hover:bg-blue-700 transition-all duration-300 font-bold text-lg hover-lift"
+              class="bg-blue-600 text-white px-6 sm:px-8 lg:px-10 py-4 sm:py-5 rounded-full hover:bg-blue-700 transition-all duration-300 font-bold text-base sm:text-lg hover-lift"
               :class="{ 'animate-pulse': ctaClicked }"
             >
               View Projects

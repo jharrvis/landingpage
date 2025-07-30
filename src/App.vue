@@ -42,6 +42,14 @@
     
     <!-- Go to Top Button -->
     <GoToTopButton />
+
+    <!-- Mobile Menu Overlay - Full Page -->
+    <div 
+      v-show="mobileMenuOpen"
+      class="fixed inset-0 bg-black bg-opacity-80 lg:hidden"
+      style="z-index: 45;"
+      @click="closeMobileMenu"
+    ></div>
   </div>
 </template>
 
@@ -83,6 +91,7 @@ export default {
       isOpen: false,
       videoId: ''
     })
+    const mobileMenuOpen = ref(false)
 
     const openVideoModal = (videoId) => {
       videoModal.value.isOpen = true
@@ -94,6 +103,14 @@ export default {
       videoModal.value.isOpen = false
       videoModal.value.videoId = ''
       document.body.classList.remove('overflow-hidden')
+    }
+
+    const closeMobileMenu = () => {
+      mobileMenuOpen.value = false
+      document.body.style.overflow = ''
+      // Emit event to notify header to close menu
+      const event = new CustomEvent('closeMobileMenuFromOverlay')
+      window.dispatchEvent(event)
     }
 
     // Setup intersection observer for animations
@@ -132,16 +149,37 @@ export default {
       window.addEventListener('openVideoModal', (event) => {
         openVideoModal(event.detail.videoId)
       })
+
+      // Global event listener for mobile menu
+      window.addEventListener('toggleMobileMenu', (event) => {
+        mobileMenuOpen.value = event.detail.isOpen
+        if (mobileMenuOpen.value) {
+          document.body.style.overflow = 'hidden'
+        } else {
+          document.body.style.overflow = ''
+        }
+      })
+
+      // Global event listener for mobile menu close
+      window.addEventListener('closeMobileMenu', () => {
+        mobileMenuOpen.value = false
+        document.body.style.overflow = ''
+      })
     })
 
     onUnmounted(() => {
       window.removeEventListener('openVideoModal', () => {})
+      window.removeEventListener('toggleMobileMenu', () => {})
+      window.removeEventListener('closeMobileMenu', () => {})
+      document.body.style.overflow = ''
     })
 
     return {
       videoModal,
+      mobileMenuOpen,
       openVideoModal,
-      closeVideoModal
+      closeVideoModal,
+      closeMobileMenu
     }
   }
 }

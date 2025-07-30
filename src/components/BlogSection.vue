@@ -6,7 +6,7 @@
         <div class="lg:col-span-4">
           <div class="space-y-6 slide-in-bottom">
             <p class="text-gray-500 text-sm font-medium tracking-wider uppercase">Blog</p>
-            <h2 class="text-4xl lg:text-5xl font-black text-gray-900 leading-tight">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-black text-gray-900 leading-tight">
               Latest News<br>
               & Updates
             </h2>

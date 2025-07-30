@@ -8,7 +8,7 @@
           </svg>
           <span class="font-medium text-gray-700">100+ Positive Reviews</span>
         </div>
-        <h2 class="text-5xl font-bold mb-6">
+        <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6">
           What Our <span class="text-blue-600">Clients Say</span>
         </h2>
       </div>
@@ -71,7 +71,7 @@
 </template>
 
 <script>
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import TestimonialCard from './TestimonialCard.vue'
 
 export default {
@@ -81,7 +81,7 @@ export default {
   },
   setup() {
     const currentSlide = ref(0)
-    const slidesToShow = ref(3)
+    const slidesToShow = ref(1) // Default to 1 for mobile
     
     const testimonials = ref([
       {
@@ -169,6 +169,31 @@ export default {
     const goToSlide = (index) => {
       currentSlide.value = index
     }
+
+    // Handle responsive slides
+    const updateSlidesToShow = () => {
+      if (window.innerWidth >= 1024) { // lg breakpoint
+        slidesToShow.value = 3
+      } else if (window.innerWidth >= 768) { // md breakpoint
+        slidesToShow.value = 2
+      } else {
+        slidesToShow.value = 1
+      }
+      // Reset current slide if it's out of bounds
+      const newMaxSlide = Math.max(0, testimonials.value.length - slidesToShow.value)
+      if (currentSlide.value > newMaxSlide) {
+        currentSlide.value = newMaxSlide
+      }
+    }
+
+    onMounted(() => {
+      updateSlidesToShow()
+      window.addEventListener('resize', updateSlidesToShow)
+    })
+
+    onUnmounted(() => {
+      window.removeEventListener('resize', updateSlidesToShow)
+    })
 
     return {
       testimonials,

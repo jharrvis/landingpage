@@ -38,7 +38,7 @@
               <div class="w-12 h-0.5 bg-gray-400"></div>
               <span class="text-gray-600 font-medium">Why Choose</span>
             </div>
-            <h2 class="text-5xl font-bold leading-tight">
+            <h2 class="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
               We Provide brilliant ideas & the digital agency
             </h2>
             <p class="text-lg text-gray-600 leading-relaxed">

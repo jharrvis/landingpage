@@ -7,7 +7,7 @@
       <!-- Content -->
       <div class="lg:col-span-8 space-y-4">
         <p class="text-gray-500 text-sm font-medium">{{ post.date }}</p>
-        <h3 class="text-2xl lg:text-3xl font-bold text-gray-900 leading-tight group-hover:underline transition-all duration-300">
+        <h3 class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-900 leading-tight group-hover:underline transition-all duration-300">
           {{ post.title }}
         </h3>
       </div>
